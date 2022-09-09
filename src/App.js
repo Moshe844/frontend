@@ -85,7 +85,7 @@ class App extends Component {
       })
       .then(response => response.json())
       .then(response => {
-        if (response) {
+        if (response.id) {
           fetch('https://ancient-sea-46547.herokuapp.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
