@@ -20,7 +20,8 @@ class Signin extends React.Component {
   }
 
 
-  onSubmitSignIn = () => {
+  onSubmitSignIn = (event) => {
+    event.preventDefault()
     fetch('https://ancient-sea-46547.herokuapp.com/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -44,7 +45,7 @@ class Signin extends React.Component {
     return (
       <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
-          <div className="measure">
+          <form className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Sign In</legend>
               <div className="mt3">
@@ -79,7 +80,7 @@ class Signin extends React.Component {
             <div className="lh-copy mt3">
               <p  onClick={() => onRouteChange('register')} className="f6 link dim black db pointer">Register</p>
             </div>
-          </div>
+          </form>
         </main>
       </article>
     );
