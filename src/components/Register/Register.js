@@ -1,5 +1,9 @@
 import React from 'react';
+// import { toast} from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
+
+// toast.configure()
 class Register extends React.Component {
   constructor(props) {
     super(props);

@@ -74,6 +74,7 @@ class App extends Component {
   }
 
   onButtonSubmit = () => {
+    this.displayFaceBox({box: {}})
     this.setState({imageUrl: this.state.input});
       fetch('https://ancient-sea-46547.herokuapp.com/imageurl', {
         method: 'post',
@@ -84,7 +85,7 @@ class App extends Component {
       })
       .then(response => response.json())
       .then(response => {
-        if (this.state.input.imageUrl) {
+        if (response.rawData?.outputs[0]?.data?.regions[0]?.region_info.bounding_box) {
           fetch('https://ancient-sea-46547.herokuapp.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -97,9 +98,9 @@ class App extends Component {
               this.setState(Object.assign(this.state.user, { entries: count}))
             })
             .catch(console.log)
-
+             this.displayFaceBox(this.calculateFaceLocation(response))
         }
-        this.displayFaceBox(this.calculateFaceLocation(response))
+        
       })
       .catch(err => console.log(err));
   }
