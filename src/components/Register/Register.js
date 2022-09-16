@@ -14,8 +14,9 @@ class Register extends React.Component {
 
   showToast = message => {
     toast.error(message, {
-      position: 'top-right',
-      hideProgressBar: false,
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 3000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
@@ -39,7 +40,15 @@ class Register extends React.Component {
     event.preventDefault();
     let regex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/g;
     const isEmailValid = this.state.email.match(regex);
-    if (!isEmailValid) return this.showToast();
+    const email1 = this.state.email;
+    const password1 = this.state.password;
+    const name1 = this.state.name;
+    if (!email1 || !password1 || !name1) {
+      return this.showToast('Please input all the required fields to registser');
+    }
+    if (!isEmailValid) {
+      return this.showToast();
+    }
     fetch('https://ancient-sea-46547.herokuapp.com/register', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
