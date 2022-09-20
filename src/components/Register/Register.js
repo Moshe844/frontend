@@ -64,7 +64,15 @@ class Register extends React.Component {
       })
       .then(user => {
         if (user.id) {
-          toast.success('registration was successful');
+          toast.success('registration was successful', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
           setTimeout(() => {
             this.props.loadUser(user);
             this.props.onRouteChange('home');

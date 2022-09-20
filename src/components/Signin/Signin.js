@@ -10,17 +10,6 @@ class Signin extends React.Component {
       signInPassword: '',
     };
   }
-  // showToast = message => {
-  //   toast.error(message, {
-  //     position: toast.POSITION.TOP_CENTER,
-  //     autoClose: 3000,
-  //     hideProgressBar: true,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //   });
-  // };
 
   showToast1 = message => {
     toast.error(message, {
@@ -33,10 +22,6 @@ class Signin extends React.Component {
       progress: undefined,
     });
   };
-
-  // notify = (notifying) => {
-  //   toast('invalid username or password')
-  // }
 
   onEmailChange = event => {
     this.setState({ signInEmail: event.target.value });
@@ -125,6 +110,11 @@ class Signin extends React.Component {
             <div className='lh-copy mt3'>
               <p onClick={() => onRouteChange('register')} className='f6 link dim black db pointer'>
                 Register
+              </p>
+            </div>
+            <div className='lh-copy mt3'>
+              <p onClick={() => onRouteChange('forgotpassword')} className='f6 link dim black db pointer'>
+                Forgot Passowrd?
               </p>
             </div>
           </form>
