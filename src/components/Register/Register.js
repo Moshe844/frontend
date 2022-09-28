@@ -24,20 +24,16 @@ class Register extends React.Component {
     });
   };
 
-  onNameChange = event => {
-    this.setState({ name: event.target.value });
-  };
+  onNameChange = event => this.setState({ name: event.target.value });
 
-  onEmailChange = event => {
-    this.setState({ email: event.target.value });
-  };
+  onEmailChange = event => this.setState({ email: event.target.value });
 
-  onPasswordChange = event => {
-    this.setState({ password: event.target.value });
-  };
+  onPasswordChange = event => this.setState({ password: event.target.value });
 
   onSubmitSignIn = event => {
     event.preventDefault();
+
+    // eslint-disable-next-line
     let regex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/g;
     const isEmailValid = this.state.email.match(regex);
     const email1 = this.state.email;
@@ -63,21 +59,19 @@ class Register extends React.Component {
         return response.json();
       })
       .then(user => {
-        if (user.id) {
-          toast.success('registration was successful', {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-          setTimeout(() => {
-            this.props.loadUser(user);
-            this.props.onRouteChange('home');
-          }, 2000);
-        }
+        if (!user.id) return;
+
+        toast.success('registration was successful', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        setTimeout(() => this.props.updateState('user', user), 2000);
       })
       .catch(error => this.showToast(error.message));
   };

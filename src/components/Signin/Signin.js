@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -33,6 +34,8 @@ class Signin extends React.Component {
 
   onSubmitSignIn = event => {
     event.preventDefault();
+
+    // eslint-disable-next-line
     let regex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/g;
     const isEmailValid = this.state.signInEmail.match(regex);
     const signInEmail1 = this.state.signInEmail;
@@ -58,15 +61,13 @@ class Signin extends React.Component {
       })
       .then(user => {
         if (user.id) {
-          this.props.loadUser(user);
-          this.props.onRouteChange('home');
+          this.props.updateState('user', user);
         }
       })
       .catch(error => this.showToast1(error.message));
   };
 
   render() {
-    const { onRouteChange } = this.props;
     return (
       <article className='br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center'>
         <ToastContainer />
@@ -108,14 +109,14 @@ class Signin extends React.Component {
               />
             </div>
             <div className='lh-copy mt3'>
-              <p onClick={() => onRouteChange('register')} className='f6 link dim black db pointer'>
+              <Link to='/register' className='f6 link dim black db pointer'>
                 Register
-              </p>
+              </Link>
             </div>
             <div className='lh-copy mt3'>
-              <p onClick={() => onRouteChange('forgotpassword')} className='f6 link dim black db pointer'>
+              <Link to='/forgot-password' className='f6 link dim black db pointer'>
                 Forgot Passowrd?
-              </p>
+              </Link>
             </div>
           </form>
         </main>

@@ -5,15 +5,28 @@ class ForgotPassword extends React.Component {
     super(props);
     this.state = {
       ForgotPasswordLink: '',
+      email: '',
     };
   }
 
   onEmailChange = event => {
-    this.setState({ ForgotPasswordLink: event.target.value });
+    this.setState({ email: event.target.value });
   };
 
   onSubmitSignIn = event => {
     event.preventDefault();
+    fetch('http://localhost:3001/sendResetPassowrdLink', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ForgotPasswordLink: this.state.ForgotPasswordLink,
+        email: this.state.email,
+      }),
+    })
+      .then(response => response.text())
+      .then(data => {
+        console.log(data);
+      });
   };
 
   render() {
