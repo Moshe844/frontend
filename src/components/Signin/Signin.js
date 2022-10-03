@@ -1,4 +1,5 @@
 import React from 'react';
+import './Signin.css';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -67,6 +68,10 @@ class Signin extends React.Component {
       .catch(error => this.showToast1(error.message));
   };
 
+  logInAsGuest = () => {
+    this.setState({ signInEmail: 'moshe@gmail.com', signInPassword: 'Moshe6700' });
+  };
+
   render() {
     return (
       <article className='br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center'>
@@ -80,11 +85,12 @@ class Signin extends React.Component {
                   Email
                 </label>
                 <input
-                  className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                  className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 hover-black'
                   type='email'
                   name='email-address'
                   id='email-address'
                   onChange={this.onEmailChange}
+                  value={this.state.signInEmail}
                 />
               </div>
               <div className='mv3'>
@@ -92,11 +98,12 @@ class Signin extends React.Component {
                   Password
                 </label>
                 <input
-                  className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                  className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 hover-black'
                   type='password'
                   name='password'
                   id='password'
                   onChange={this.onPasswordChange}
+                  value={this.state.signInPassword}
                 />
               </div>
             </fieldset>
@@ -106,6 +113,14 @@ class Signin extends React.Component {
                 className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
                 type='submit'
                 value='Sign in'
+              />
+            </div>
+            <div className=''>
+              <input
+                onClick={this.logInAsGuest}
+                className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
+                type='button'
+                value='log in as guest'
               />
             </div>
             <div className='lh-copy mt3'>

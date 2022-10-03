@@ -1,0 +1,23 @@
+.br4 {
+  border-radius: 1rem;
+}
+
+.dib {
+  display: inline-block;
+}
+
+.h3 {
+  height: 4rem;
+}
+
+.w3 {
+  width: 4rem;
+}
+
+.pa4 {
+  padding: 2rem;
+}
+
+.tc {
+  text-align: center;
+}

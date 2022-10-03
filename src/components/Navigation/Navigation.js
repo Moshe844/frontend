@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileIcon from '../Profile/ProfileIcon';
 
-const Navigation = ({ isSignedIn, updateState }) => {
+const Navigation = ({ isSignedIn, updateState, toggleModal }) => {
   const logUserOut = () => {
     const initialUserState = {
       id: '',
@@ -17,9 +18,7 @@ const Navigation = ({ isSignedIn, updateState }) => {
   if (isSignedIn) {
     return (
       <nav style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <p className='f3 link dim black underline pa3 pointer' onClick={logUserOut}>
-          Sign Out
-        </p>
+        <ProfileIcon logUserOut={logUserOut} toggleModal={toggleModal} />
       </nav>
     );
   } else {

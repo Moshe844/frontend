@@ -26,7 +26,7 @@ class ResetPassword extends Component {
       return alert('Passwords do not match');
     }
 
-    fetch('http://localhost:3001', {
+    fetch('http://localhost:3005/resetPassword', {
       method: 'post',
     })
       .then(response => response.json())
